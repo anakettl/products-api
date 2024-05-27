@@ -22,7 +22,11 @@ Be sure you have docker and docker-compose installed.
  ⠿ Container products-api-db-1  Started
 ```
 
-### Step 3 - Up the server
+### Step 3 - Run the migrations
+
+`docker-compose run web bin/rails db:migrate`
+
+### Step 4 - Up the server
 Finally you can up the server
 
 `docker-compose up`
