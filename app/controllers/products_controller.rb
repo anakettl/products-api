@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[ show update destroy ]
+  before_action :find_product, only: %i[ show update destroy ]
 
   # GET /products
   def index
@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_product
+    def find_product
       @product = Product.find(params[:id])
     end
 
