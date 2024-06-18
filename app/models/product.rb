@@ -1,3 +1,4 @@
 class Product < ApplicationRecord
-  validates :lm, :name, :free_shipping, :price, presence: true
+  validates :lm, :name, :price, presence: true
+  validates :lm, numericality: { only_integer: true }
 end
