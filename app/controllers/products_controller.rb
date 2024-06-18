@@ -38,6 +38,11 @@ class ProductsController < ApplicationController
     @product.destroy!
   end
 
+  # POST /products/import
+  def import
+    Products::Import.new(spreadsheet: params[:file]).call
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def find_product
