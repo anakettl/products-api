@@ -11,7 +11,7 @@ RSpec.describe Product, type: :model do
     context 'with valid attributes' do
       let(:attributes) do
         {
-          "lm": "1002",
+          "lm": 1002,
           "name": "First Product",
           "free_shipping": 1,
           "description": "The better Product",
@@ -38,14 +38,14 @@ RSpec.describe Product, type: :model do
 
       it 'returns an error message' do
         subject
-        expect(product.errors.messages).to match({:lm=>["can't be blank"]})
+        expect(product.errors.messages).to match({:lm=>["can't be blank", "is not a number"]})
       end
     end
 
     context 'without name' do
       let(:attributes) do
         {
-          "lm": "1002",
+          "lm": 1002,
           "free_shipping": 1,
           "description": "The better Product",
           "price": 200
@@ -60,28 +60,10 @@ RSpec.describe Product, type: :model do
       end
     end
 
-    context 'without free_shipping' do
-      let(:attributes) do
-        {
-          "lm": "1002",
-          "name": "First Product",
-          "description": "The better Product",
-          "price": 200
-        }
-      end
-
-      it { expect(subject).to be_falsey }
-
-      it 'returns an error message' do
-        subject
-        expect(product.errors.messages).to match({:free_shipping=>["can't be blank"]})
-      end
-    end
-
     context 'without price' do
       let(:attributes) do
         {
-          "lm": "1002",
+          "lm": 1002,
           "name": "First Product",
           "free_shipping": 1,
           "description": "The better Product",
@@ -105,7 +87,7 @@ RSpec.describe Product, type: :model do
 
       it 'returns an error message' do
         subject
-        expect(product.errors.messages).to match({:free_shipping=>["can't be blank"], :lm=>["can't be blank"], :name=>["can't be blank"], :price=>["can't be blank"]})
+        expect(product.errors.messages).to match({:lm=>["can't be blank", "is not a number"], :name=>["can't be blank"], :price=>["can't be blank"]})
       end
     end
   end
